@@ -8,19 +8,19 @@
 
 using std::cout;
 
-#include "wali/nwa/NWA.hpp"
-#include "wali/nwa/NestedWord.hpp"
-#include "wali/nwa/construct/reverse.hpp"
-#include "wali/nwa/query/language.hpp"
+#include "opennwa/Nwa.hpp"
+#include "opennwa/NestedWord.hpp"
+#include "opennwa/construct/reverse.hpp"
+#include "opennwa/query/language.hpp"
 
 using wali::getKey;
-using wali::nwa::NWA;
-using wali::nwa::State;
-using wali::nwa::Symbol;
-using wali::nwa::NWARefPtr;
-using wali::nwa::NestedWord;
-using wali::nwa::construct::reverse;
-using wali::nwa::query::languageContains;
+using opennwa::Nwa;
+using opennwa::State;
+using opennwa::Symbol;
+using opennwa::NwaRefPtr;
+using opennwa::NestedWord;
+using opennwa::construct::reverse;
+using opennwa::query::languageContains;
 
 // These symbols are used in the NWA and both words, so I'll make them
 // global.
@@ -33,10 +33,10 @@ Symbol const sym_ret  = getKey("ret");
 
 /// Creates the NWA shown in Figure 3 of the Wali NWA documentation, storing
 /// it in 'out'.
-NWA
+Nwa
 create_figure_3()
 {
-    NWA out;
+    Nwa out;
     
     // Translate the names of the states then symbols to Wali identifiers
     State start   = getKey("Start");
@@ -102,10 +102,10 @@ create_backwards_word()
 int main()
 {
     // Create the NWA
-    NWA fig3 = create_figure_3();
+    Nwa fig3 = create_figure_3();
 
     // Reverse it
-    NWARefPtr fig3_reversed = reverse(fig3);
+    NwaRefPtr fig3_reversed = reverse(fig3);
 
     // These are the words we are testing
     NestedWord forwards_word = create_forwards_word();
